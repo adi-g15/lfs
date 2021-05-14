@@ -10,7 +10,6 @@ export source_directory="sources/"
 fi
 
 echo "Source directory is "$source_directory
-exit
 
 # This function takes the download url for a package as argument
 # Then, it extracts the filename from download url, storing it in `name`
@@ -23,7 +22,7 @@ fn() {
 
     if [ -e $source_directory$name ]
     then
-        # This has one problem: THere maybe an incomplete file existing
+        # This has one problem: There maybe an incomplete file existing
         echo $source_directory$name" exists"
     else
         echo "Downloading "$source_directory$name
@@ -37,13 +36,15 @@ export -f fn
 mkdir -pv $source_directory     # create the source directory if doesn't exist yet (wget would automatically create either way)
 
 # This line first extracts all download urls from lfs_packages.txt, then executes `fn` parallely for each download url
-awk '/Download: / {print $2}' lfs_packages.txt | xargs -P 0 -I {} bash -c 'fn "$@"' _ {}
+# The `sed 's/\r$//'` part removes line feeds, that may be there, if you created the txt file on Windows
+awk '/Download: / {print $2}' lfs_packages.txt | sed 's/\r$//' | xargs -P 0 -I {} bash -c 'fn "$@"' _ {}
 
-echo "Download completed"
+echo ""
+echo "Downloads Completed... Verifying MD5 Hashes"
 
 curr_path=$(pwd)
 pushd $LFS/sources
-    md5sums -c $curr_path"/md5sums.txt"
+    md5sum -c $curr_path"/md5sums.txt"
 popd
 
 unset source_directory
