@@ -26,3 +26,11 @@ extract_n_cd() {
 	directory_name=
 	cd $archive_name
 }
+
+# WARNING- THE LATER PART OF THIS MUST BE EXECUTED BY lfs USER
+
+./chap5_tools/binutils_pass1.sh
+./chap5_tools/gcc_pass1.sh
+./chap5_tools/linux_headers.sh
+./chap5_tools/glibc.sh
+./chap5_tools/libstdc++_pass1.sh

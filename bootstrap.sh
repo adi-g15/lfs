@@ -12,5 +12,9 @@ su -        # Execute as root now
 
 mkdir -v $LFS/sources
 chmod -v a+wt $LFS/sources
+if [ -d "sources" ]; then
+    # If we have a 'sources' directory in this directory, we will copy the contents there
+    cp sources/*.{xz,bz2,gz,patch} $LFS/sources/
+fi
 ./smart_download.sh
 
