@@ -1,0 +1,116 @@
+unixInit.test
+
+
+==== unixInit-1.2 initialisation: standard channel type deduction FAILED
+==== Contents of test case:
+
+    # pipe1 is a connection to a server that reports what port it starts on,
+    # and delivers a constant string to the first client to connect to that
+    # port before exiting.
+    set pipe1 [open "|[list [interpreter]]" r+]
+    puts $pipe1 {
+        proc accept {channel host port} {
+            puts $channel {puts [chan configure stdin -peername]; exit}
+            close $channel
+            exit
+        }
+        puts [chan configure [socket -server accept -myaddr 127.0.0.1 0] -sockname]
+        vwait forever  }
+    # Note the backslash above; this is important to make sure that the whole
+    # string is read before an [exit] can happen...
+    flush $pipe1
+    set port [lindex [gets $pipe1] 2]
+    set sock [socket localhost $port]
+    # pipe2 is a connection to a Tcl interpreter that takes its orders from
+    # the socket we hand it (i.e. the server we create above.)  These orders
+    # will tell it to print out the details about the socket it is taking
+    # instructions from, hopefully identifying it as a socket.  Which is what
+    # this test is all about.
+    set pipe2 [open "|[list [interpreter] <@$sock]" r]
+    set result [gets $pipe2]
+    # Clear any pending data; stops certain kinds of (non-important) errors
+    chan configure $pipe1 -blocking 0; gets $pipe1
+    chan configure $pipe2 -blocking 0; gets $pipe2
+    # Close the pipes and the socket.
+    close $pipe2
+    close $pipe1
+    catch {close $sock}
+    # Can't use normal comparison, as hostname varies due to some
+    # installations having a messed up /etc/hosts file.
+    if {
+        "127.0.0.1" eq [lindex $result 0] && $port == [lindex $result 2]
+    } then {
+        subst "OK"
+    } else {
+        subst "Expected: `[list 127.0.0.1 localhost $port]', Got `$result'"
+    }
+
+---- Test generated error; Return code was: 1
+---- Return code should have been one of: 0 2
+---- errorInfo: couldn't open socket: connection refused
+    while executing
+"socket localhost $port"
+    ("uplevel" body line 18)
+    invoked from within
+"uplevel 1 $script"
+---- errorCode: POSIX ECONNREFUSED {connection refused}
+==== unixInit-1.2 FAILED
+
+unixNotfy.test
+unknown.test
+unload.test
+uplevel.test
+upvar.test
+utf.test
+util.test
+var.test
+while-old.test
+while.test
+winConsole.test
+winDde.test
+winFCmd.test
+winFile.test
+winNotify.test
+winPipe.test
+winTime.test
+zlib.test
+
+Tests ended at Sat Jun 26 01:31:47 IST 2021
+all.tcl:        Total   33936   Passed  30528   Skipped 3407    Failed   1
+Sourced 151 Test Files.
+Files with failing tests: unixInit.test
+Number of tests skipped for each constraint:
+        9       !ieeeFloatingPoint
+        3       asyncPipeChan
+        76      bigEndian
+        5       bug-3057639
+        49      dde
+        1       dontCopyLinks
+        62      emptyTest
+        43      fullutf
+        2       hasIsoLocale
+        1       knownBadTest
+        42      knownBug
+        100     localeRegexp
+        8       localhost_v4
+        52      longIs32bit
+        14      macosxFileAttr
+        82      memory
+        43      nonPortable
+        258     notRoot
+        1       notValgrind
+        4       nt
+        1       pairsTo4bytes
+        2       pre388
+        1996    serverNeeded
+        1       testexprparser && !ieeeFloatingPoint
+        1       testwinclock
+        22      ucs4
+        2       unthreaded
+        15      utf16
+        2       wideBiggerThanInt
+        492     win
+        1       winLessThan10
+        4       winVista
+        2       xdev
+

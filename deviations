@@ -1,0 +1,6 @@
+deviations -> 
+in gcc pass 1, used --with-glibc-version 2.33, instead of suggested 2.11
+in glibc, used enable-kernel=5.12, instead of suggested 3.2
+1 test in flex (8.14) check failed
+1 test in tcl (8.15) check failed
+5 tests failed in gmp (8.19)

@@ -1,0 +1,1 @@
+gcc (+tests) in chap 8, with 95 SBU, was taking almost (or little more) 1 hr 20 min, i killed it, since load average was above 8 (& even above 9) for most of time

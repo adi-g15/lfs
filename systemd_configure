@@ -1,0 +1,22 @@
+(chroot lfs) root:/sources/systemd-248/build# systemd-machine-id-setup 
+Initializing machine ID from random generator.
+(chroot lfs) root:/sources/systemd-248/build# systemctl preset-all
+Created symlink /etc/systemd/system/dbus-org.freedesktop.network1.service → /usr/lib/systemd/system/systemd-networkd.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-networkd.service → /usr/lib/systemd/system/systemd-networkd.service.
+Created symlink /etc/systemd/system/sockets.target.wants/systemd-networkd.socket → /usr/lib/systemd/system/systemd-networkd.socket.
+Created symlink /etc/systemd/system/network-online.target.wants/systemd-networkd-wait-online.service → /usr/lib/systemd/system/systemd-networkd-wait-online.service.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-sysext.service → /usr/lib/systemd/system/systemd-sysext.service.
+Created symlink /etc/systemd/system/ctrl-alt-del.target → /usr/lib/systemd/system/reboot.target.
+Created symlink /etc/systemd/system/multi-user.target.wants/nscd.service → /usr/lib/systemd/system/nscd.service.
+Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /usr/lib/systemd/system/getty@.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /usr/lib/systemd/system/remote-fs.target.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.oom1.service → /usr/lib/systemd/system/systemd-oomd.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-oomd.service → /usr/lib/systemd/system/systemd-oomd.service.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /usr/lib/systemd/system/systemd-pstore.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/machines.target → /usr/lib/systemd/system/machines.target.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.timesync1.service → /usr/lib/systemd/system/systemd-timesyncd.service.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /usr/lib/systemd/system/systemd-timesyncd.service.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /usr/lib/systemd/system/systemd-resolved.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /usr/lib/systemd/system/systemd-resolved.service.
+(chroot lfs) root:/sources/systemd-248/build# systemctl disable systemd-time-wait-sync.service
+(chroot lfs) root:/sources/systemd-248/build#

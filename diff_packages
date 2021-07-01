@@ -1,0 +1,44 @@
+13a14
+> dbus-1.12.20.tar.gz
+16,17d16
+< e2fsprogs-1.46.2.tar.gz
+< elfutils-0.185.tar.bz2
+19d17
+< expat-2.4.1.tar.xz
+21d18
+< file-5.40.tar.gz
+25d21
+< gcc-11.1.0.tar.xz
+34d29
+< grub-2.06.tar.xz
+36d30
+< iana-etc-20210611.tar.gz
+39d32
+< iproute2-5.12.0.tar.xz
+42,45d34
+< kmod-29.tar.xz
+< less-581.tar.gz
+< lfs-bootscripts-20210608.tar.xz
+< libcap-2.50.tar.xz
+49,50d37
+< linux-5.12.10.tar.xz
+< m4-1.4.19.tar.xz
+53,54d39
+< man-pages-5.11.tar.xz
+< meson-0.58.1.tar.gz
+59d43
+< openssl-1.1.1k.tar.gz
+61d44
+< perl-5.34.0.tar.xz
+65,66d47
+< python-3.9.5-docs-html.tar.bz2
+< Python-3.9.5.tar.xz
+71,72d51
+< sysvinit-2.99-consolidated-1.patch
+< sysvinit-2.99.tar.xz
+79,81d57
+< util-linux-2.37.tar.xz
+< util-linux-man-pages-2.37.tar.xz
+< vim-8.2.3001.tar.gz
+85d60
+< zstd-1.5.0.tar.gz
